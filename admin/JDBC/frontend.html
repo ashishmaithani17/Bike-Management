@@ -1,0 +1,29 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike Rental System</title>
+</head>
+<body>
+    <h1>Bike Rental System</h1>
+    <div id="bikeList"></div>
+
+    <script>
+        // Fetch bike data from the backend API
+        fetch('http://localhost:8080/api/bikes')
+            .then(response => response.json())
+            .then(data => {
+                // Process the data and update the HTML
+                const bikeListDiv = document.getElementById('bikeList');
+                data.bikes.forEach(bike => {
+                    bikeListDiv.innerHTML += `<p>${bike.id}: ${bike.name}</p>`;
+                });
+            })
+            .catch(error => console.error('Error fetching bike data:', error));
+    </script>
+</body>
+</html>
+
